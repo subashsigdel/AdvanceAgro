@@ -1,0 +1,140 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+.gauge{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.gauge1{
+    margin-left: 80px;
+}
+.frame {
+    height: 230px; 
+    width: 230px; 
+    border-radius: 20px; 
+    border-radius: 2px;
+    box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    color: #333;
+    display: flex; 
+    align-items: center; 
+/* justify-content: space-around; */
+    font-family: "Open Sans", Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+
+/* .center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+.temparature-meter__container {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  border-radius: 200px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+  border: solid 10px #fff;
+  overflow: hidden;
+}
+.temparature-meter__container:after {
+  position: absolute;
+  content: "";
+  height: 120px;
+  width: 120px;
+  background-color: #fff;
+  z-index: 0;
+  transform: rotate(45deg);
+  bottom: -40px;
+  left: 40px;
+  z-index: 1;
+}
+
+.temparature-meter__inner {
+  display: flex;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(to right, #683490 0%, #c63363 100%);
+  overflow: hidden;
+}
+.temparature-meter__inner .temparature-meter__inner-ring {
+  cursor: pointer;
+  position: relative;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 130px;
+  width: 130px;
+  background-color: #fff;
+  border-radius: 100%;
+  box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.2);
+  z-index: 9;
+}
+.temparature-meter__inner .temparature-meter__inner-ring:after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 50%;
+  background-image: linear-gradient(#652c95 15px, transparent 0);
+  top: 0;
+  left: 50%;
+  transform-origin: bottom;
+  transform: rotatez(-35deg);
+  transition: all 0.8s ease-in-out;
+}
+.temparature-meter__inner .temparature-meter__inner-ring:hover:after {
+  transform: rotatez(-20deg);
+}
+.temparature-meter__inner .temparature-meter__inner-ring .temparature-count {
+  display: block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  transition: all 0.8s ease-in-out;
+}
+.temparature-meter__inner .temparature-meter__inner-ring .temparature-count.c2 {
+  opacity: 0;
+  transform: translatex(50px) scale(0.5);
+}
+.temparature-meter__inner .temparature-meter__inner-ring:hover .c1 {
+  opacity: 0;
+  transform: translatex(-50px) scale(0.5);
+}
+.temparature-meter__inner .temparature-meter__inner-ring:hover .c2 {
+  opacity: 1;
+  transform: translatex(0) scale(1);
+}
+.temparature-meter__inner .temparature-inside {
+  position: relative;
+  font-size: 50px;
+  display: inline-block;
+  letter-spacing: -5px;
+  font-weight: 500;
+  color: #873183;
+  height: 58px;
+}
+.temparature-meter__inner .temparature-inside .temperature-sup {
+  font-size: 20px;
+  position: absolute;
+  position: relative;
+  right: -25px;
+  top: -25px;
+}
+.temparature-meter__inner .temparature-outside {
+  font-size: 13px;
+}
+.temparature-meter__inner .temparature-meter__inner-label {
+  font-size: 13px;
+}
+
+
+
+
+

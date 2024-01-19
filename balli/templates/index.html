@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html> 
+<html lang="en"> 
+
+<head> 
+	<meta charset="UTF-8"> 
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge"> 
+	<meta name="viewport"
+		content="width=device-width, 
+				initial-scale=1.0"> 
+	<title>Advance Agriculture</title> 
+	<link rel="stylesheet" href="{% static 'frontend/css/style.css' %}"> 
+	<link rel="stylesheet" href="{% static 'frontend/css/login.css' %}"> 
+	<link rel="stylesheet" href="{% static 'frontend/css/responsive.css' %}"> 
+	<link rel="stylesheet" href="{% static 'frontend/css/gauge.css' %}">
+	<link rel="stylesheet" href="{% static 'frontend/css/weather.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+</head> 
+
+<body> 
+	
+	<!-- for header part -->
+	<header> 
+
+		<div class="logosec"> 
+			<div class="logo">उन्नतकृषि</div> 
+			<img src= "{% static 'images/agroicon.png' %}"
+				class="icnh menuicn"
+				id="menuicn"
+				alt="menu-icon"> 
+		</div> 
+
+		<div class="searchbar"> 
+			<input type="text"
+				placeholder="Search"> 
+			<div class="searchbtn"> 
+			<img src= "{% static 'images/search.png' %}"
+					class="icn srchicn"
+					alt="search-icon"> 
+			</div> 
+		</div> 
+
+		<div class="message"> {% if error %}
+            <p>Error: {{ error }}</p>
+        {% endif %}
+			<div class="circle"></div> 
+			<img src= "{% static 'images/notification.png' %}"
+				class="icn"
+				alt=""> 
+			<div class="dp"> 
+			<img src= "{% static 'images/profile.png' %}"
+					class="dpicn"
+					alt="dp"> 
+			</div> 
+		</div> 
+
+	</header> 
+
+	<div class="main-container"> 
+		<div class="navcontainer"> 
+			<nav class="nav"> 
+				<div class="nav-upper-options"> 
+					<div class="nav-option option1"> 
+						<img src="{% static 'images/dashboard.png' %}"
+							class="nav-img"
+							alt="dashboard"> 
+						<h3> 
+							ड्यासबोर्ड</h3> 
+					</div> 
+
+					<div class="nav-option option3"> 
+						<img src="{% static 'images/report.png' %}"
+							class="nav-img"
+							alt="report"> 
+						<h3> रिपोर्ट</h3> 
+					</div> 
+
+					<div class="nav-option option5"> 
+						<img src="{% static 'images/profile.png' %}"
+							class="nav-img"
+							alt="blog"> 
+						<h3> 
+							प्रोफाइल</h3> 
+					</div> 
+
+                    <div class="nav-option option5"> 
+						<img src="{% static 'images/profile.png' %}"
+							class="nav-img"
+							alt="blog"> 
+						<a href="/frontend/userinput.html"><h3>तापमान सेट गर्नुहोस्</h3></a> 
+					</div> 
+
+
+					<div class="nav-option logout"> 
+						<img src="{% static 'images/logout.png' %}"
+							class="nav-img"
+							alt="logout"> 
+						<h3><a href="{% url 'logout' %}">बाहिर निस्कनु</a></h3> 
+					</div> 
+
+				</div> 
+			</nav> 
+		</div> 
+		<div class="main">
+			<div class="gauge">
+				<div class="gauge1">
+
+					<div class="frame">
+						<div class="center">
+							<div class="temparature-meter__container">
+								<div class="temparature-meter__inner">
+									<div class="temparature-meter__inner-ring">
+										<div class="temparature-outside">{{ temperature }}<span>°</span></div>
+										<div class="temparature-inside">
+											<span class="temparature-count c1">{{ temperature }}
+												</span>
+											<span class="temparature-count c2">{{ temperature }}
+												</span>
+											<span class="temperature-sup">°</span>
+										</div>
+										<div class="temparature-meter__inner-label">तापमान</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="gauge2">
+					<div class="frame">
+						<div class="center">
+							<div class="temparature-meter__container">
+								<div class="temparature-meter__inner">
+									<div class="temparature-meter__inner-ring">
+										<div class="temparature-outside">{{humidity}}<span>°</span></div>
+										<div class="temparature-inside">
+											<span class="temparature-count c1">{{humidity}}</span>
+											<span class="temparature-count c2">{{humidity}}</span>
+											<span class="temperature-sup">°</span>
+										</div>
+										<div class="temparature-meter__inner-label">आर्द्रता</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+				<div class="gauge3">
+
+					<div class="card-container">
+						<div class="weather-card active">
+							<i class="fas fa-cloud-sun weather-icon"></i>
+							<h2>धरान</h2>
+							<div class="temp">{{weather_main}}</div>
+                            <div>{{weather_description}}</div>
+						</div>
+					</div>
+					
+					<script>
+						const cards = document.querySelectorAll('.weather-card');
+				
+						cards.forEach(card => {
+							card.addEventListener('click', () => {
+								cards.forEach(c => c.classList.remove('active'));
+								card.classList.add('active');
+							});
+						});
+					</script>
+
+
+				</div>
+			</div>
+
+
+			<div class="report-container"> 
+				<div class="report-header"> 
+					<h1 class="recent-Articles">भर्खरको डाटा</h1> 
+					<button class="view">View All</button> 
+				</div> 
+
+				<div class="report-body"> 
+					<div class="report-topic-heading"> 
+						<h3 class="t-op">नाम</h3> 
+						<h3 class="t-op">आर्द्रता</h3> 
+						<h3 class="t-op">तापमान</h3> 
+						<h3 class="t-op">पानीको स्थिति</h3> 
+                        <h3 class="t-op">समय</h3> 
+					</div> 
+{% for data in latest_entry %}
+					<div class="items"> 
+						<div class="item1"> 
+							<h3 class="t-op-nextlvl">{{data.field5}}</h3> 
+							<h3 class="t-op-nextlvl">{{data.field1|floatformat:0}}g/m³</h3> 
+							<h3 class="t-op-nextlvl">{{data.field2}}°</h3> 
+							<h3 class="t-op-nextlvl label-tag">{{data.field4}}</h3> 
+                            <h3 class="t-op-nextlvl">{{data.created_at}}</h3> 
+						</div> 
+{% endfor %}
+						
+
+					</div> 
+				</div> 
+			</div> 
+		</div> 
+	</div> 
+
+	<script src="{% static 'js/index.js' %}"></script> 
+</body> 
+</html>
