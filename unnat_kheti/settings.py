@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vj(cltevbx-i$lzwuenpm83+th&n09$&kp^%p$@x1_z6@e-yp=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['good-mackerel-hugely.ngrok-free.app', '127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'kheti',
+    'balli',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# URL that handles the static files served from STATIC_ROOT.
+STATIC_URL = '/static/'

@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+
+    <div class="login-page">
+      <div class="form">
+        <div class="login">
+          <div class="login-header">
+            <h3>LOGIN <img class="imagelog" src="{% static 'images/login.png' %}"></img></h3>
+            <p class="logh">Please enter your credentials to login.</p>
+          </div>
+        </div>
+        <form class="login-form" method="POST">
+          {% csrf_token %}
+          <input type="text" placeholder="username" name="username"/>
+          <input type="password" placeholder="password" name="password"/>
+          <button>login</button>
+          {% if message %}
+          <p class="message">{{message}}</p>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+</body>
+</html>

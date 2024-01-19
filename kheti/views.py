@@ -35,3 +35,5 @@ def receive_post(request):
 
 def live_data(request):
     return render(request, 'live_data.html', {'received_data': received_data})
+
+
