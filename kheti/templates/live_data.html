@@ -1,0 +1,31 @@
+
+<!-- everest_broker/templates/live_data.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Data</title>
+</head>
+<body>
+    <h1>Live Data Display</h1>
+    
+    <ul id="received-data">
+        {% for data in received_data %}
+            <li>{{ data }}</li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        // Update data every 2 seconds (adjust as needed)
+        setInterval(function() {
+            fetch('/')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('received-data').innerHTML = html;
+                });
+        }, 2000);
+    </script>
+</body>
+</html>
