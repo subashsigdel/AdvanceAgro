@@ -9,10 +9,13 @@
 		content="width=device-width, 
 				initial-scale=1.0"> 
 	<title>Advance Agriculture</title> 
-	<link rel="stylesheet"
-		href="/css/style.css"> 
-	<link rel="stylesheet"
-		href="css/responsive.css"> 
+	<link rel="stylesheet" href="/frontend/css/style.css"> 
+	<link rel="stylesheet" href="/frontend/css/login.css"> 
+	<link rel="stylesheet" href="/frontend/css/responsive.css"> 
+	<link rel="stylesheet" href="/frontend/css/gauge.css">
+	<link rel="stylesheet" href="/frontend/css/weather.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 </head> 
 
 <body> 
@@ -21,8 +24,8 @@
 	<header> 
 
 		<div class="logosec"> 
-			<div class="logo">UnnaatiAgro</div> 
-			<img src= "/images/agroicon.png"
+			<div class="logo">उन्नतकृषि</div> 
+			<img src= "/frontend//images/agroicon.png"
 				class="icnh menuicn"
 				id="menuicn"
 				alt="menu-icon"> 
@@ -32,7 +35,7 @@
 			<input type="text"
 				placeholder="Search"> 
 			<div class="searchbtn"> 
-			<img src= "/images/search.png"
+			<img src= "/frontend//images/search.png"
 					class="icn srchicn"
 					alt="search-icon"> 
 			</div> 
@@ -40,11 +43,11 @@
 
 		<div class="message"> 
 			<div class="circle"></div> 
-			<img src= "/images/notification.png"
+			<img src= "/frontend//images/notification.png"
 				class="icn"
 				alt=""> 
 			<div class="dp"> 
-			<img src= "/images/profile.png"
+			<img src= "/frontend//images/profile.png"
 					class="dpicn"
 					alt="dp"> 
 			</div> 
@@ -57,60 +60,109 @@
 			<nav class="nav"> 
 				<div class="nav-upper-options"> 
 					<div class="nav-option option1"> 
-						<img src="/images/agroicon.png"
+						<img src="/frontend/images/dashboard.png"
 							class="nav-img"
 							alt="dashboard"> 
-						<h3> Dashboard</h3> 
+						<h3> 
+							ड्यासबोर्ड</h3> 
 					</div> 
 
 					<div class="nav-option option3"> 
-						<img src="/images/agroicon.png"
+						<img src="/frontend//images/report.png"
 							class="nav-img"
 							alt="report"> 
-						<h3> Report</h3> 
+						<h3> रिपोर्ट</h3> 
 					</div> 
 
 					<div class="nav-option option5"> 
-						<img src="/images/agroicon.png"
+						<img src="/frontend//images/profile.png"
 							class="nav-img"
 							alt="blog"> 
-						<h3> Profile</h3> 
+						<h3> 
+							प्रोफाइल</h3> 
 					</div> 
 
 					<div class="nav-option logout"> 
-						<img src="/images/agroicon.png"
+						<img src="/frontend//images/logout.png"
 							class="nav-img"
 							alt="logout"> 
-						<h3>Logout</h3> 
+						<h3>बाहिर निस्कनु</h3> 
 					</div> 
 
 				</div> 
 			</nav> 
 		</div> 
-		<div class="main"> 
-<!-- 
-			<div class="searchbar2"> 
-				<input type="text"
-					name=""
-					id=""
-					placeholder="Search"> 
-				<div class="searchbtn"> 
-				<img src= 
-"https://media.geeksforgeeks.org/wp-content/uploads/20221210180758/Untitled-design-(28).png"
-						class="icn srchicn"
-						alt="search-button"> 
-				</div> 
-			</div>  -->
+		<div class="main">
+			<div class="gauge">
+				<div class="gauge1">
 
-			<div class="box-container"> 
+					<div class="frame">
+						<div class="center">
+							<div class="temparature-meter__container">
+								<div class="temparature-meter__inner">
+									<div class="temparature-meter__inner-ring">
+										<div class="temparature-outside">२३<span>°</span></div>
+										<div class="temparature-inside">
+											<span class="temparature-count c1">१९
+												</span>
+											<span class="temparature-count c2">२०
+												</span>
+											<span class="temperature-sup">°</span>
+										</div>
+										<div class="temparature-meter__inner-label">तापमान</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="gauge2">
+					<div class="frame">
+						<div class="center">
+							<div class="temparature-meter__container">
+								<div class="temparature-meter__inner">
+									<div class="temparature-meter__inner-ring">
+										<div class="temparature-outside">23<span>°</span></div>
+										<div class="temparature-inside">
+											<span class="temparature-count c1">19</span>
+											<span class="temparature-count c2">20</span>
+											<span class="temperature-sup">°</span>
+										</div>
+										<div class="temparature-meter__inner-label">आर्द्रता</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-				<div class="box box1"> 
 
-				</div> 
+				</div>
 
-				<div class="box box2"> 
-				</div> 
-			</div> 
+				<div class="gauge3">
+
+					<div class="card-container">
+						<div class="weather-card active">
+							<i class="fas fa-cloud-sun weather-icon"></i>
+							<h2>धरान</h2>
+							<div class="temp">72°F</div>
+						</div>
+					</div>
+					
+					<script>
+						const cards = document.querySelectorAll('.weather-card');
+				
+						cards.forEach(card => {
+							card.addEventListener('click', () => {
+								cards.forEach(c => c.classList.remove('active'));
+								card.classList.add('active');
+							});
+						});
+					</script>
+
+
+				</div>
+			</div>
+
 
 			<div class="report-container"> 
 				<div class="report-header"> 
