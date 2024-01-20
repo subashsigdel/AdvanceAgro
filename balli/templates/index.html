@@ -1,4 +1,6 @@
 {% load static %}
+
+{% load nepalidatetime %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +11,7 @@
 				initial-scale=1.0">
     <title>Advance Agriculture</title>
     <link rel="stylesheet" href="{% static 'frontend/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/css/warning.css' %}">
     <link rel="stylesheet" href="{% static 'frontend/css/login.css' %}">
     <link rel="stylesheet" href="{% static 'frontend/css/responsive.css' %}">
     <link rel="stylesheet" href="{% static 'frontend/css/gauge.css' %}">
@@ -53,7 +56,7 @@
                     <div class="nav-option option1">
                         <img src="{% static 'images/dashboard.png' %}" class="nav-img" alt="dashboard">
                         <h3><a href="{% url 'dashboard' %}">
-                            ड्यासबोर्ड</a></h3>
+                                ड्यासबोर्ड</a></h3>
                     </div>
 
                     <div class="nav-option option3">
@@ -63,18 +66,25 @@
 
 
                     <div class="nav-option option3">
-                        <img src="{% static 'images/report.png' %}" class="nav-img" alt="report">
+                        <img src="{% static 'images/timetable.png' %}" class="nav-img" alt="report">
                         <h3><a href="{% url 'timeline' %}">समय तालिका</a> </h3>
                     </div>
 
-                   
+
 
                     <div class=" nav-option option5">
-                                <img src="{% static 'images/update.png' %}" class="nav-img" alt="blog">
-                                <a href="{% url 'userinput' %}">
-                                    <h3>तापमान सेट गर्नुहोस्</h3> 
-                                </a>
+                        <img src="{% static 'images/update.png' %}" class="nav-img" alt="blog">
+                        <a href="{% url 'userinput' %}">
+                            <h3>तापमान सेट गर्नुहोस्</h3>
+                        </a>
                     </div>
+                    <div class="nav-option option5">
+                        <img src="{% static 'images/money.png' %}" class="nav-img" alt="blog">
+                        <a href="{% url 'notice' %}">
+                            <h3>मूल्य हेर्नुहोस्</h3>
+                        </a>
+                    </div>
+
 
 
                     <div class="nav-option logout">
@@ -157,40 +167,49 @@
                 </div>
             </div>
 
+            <div class="warning">
+                <div id="warning-container">
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <div><img class="wimg" src="{% static 'images/rain.png' %}" alt="alert:"> <span
+                                class="warninghead">आज पानी पर्न सक्छ !!!</span></div>
 
-            <div class="report-container">
-                <div class="report-header">
-                    <h1 class="recent-Articles">भर्खरको डाटा</h1>
-                    <button class="view">View All</button>
+                    </div>
                 </div>
 
-                <div class="report-body">
-                    <div class="report-topic-heading">
-                        <h3 class="t-op">नाम</h3>
-                        <h3 class="t-op">आर्द्रता</h3>
-                        <h3 class="t-op">तापमान</h3>
-                        <h3 class="t-op">पानीको स्थिति</h3>
-                        <h3 class="t-op">समय</h3>
+                <div class="report-container">
+                    <div class="report-header">
+                        <h1 class="recent-Articles">भर्खरको डाटा</h1>
+                        <button class="view">View All</button>
                     </div>
-                    {% for data in latest_entry %}
-                    <div class="items">
-                        <div class="item1">
-                            <h3 class="t-op-nextlvl">{{data.field5}}</h3>
-                            <h3 class="t-op-nextlvl">{{data.field1|floatformat:0}}g/m³</h3>
-                            <h3 class="t-op-nextlvl">{{data.field2}}°</h3>
-                            <h3 class="t-op-nextlvl label-tag">{{data.field4}}</h3>
-                            <h3 class="t-op-nextlvl">{{data.created_at}}</h3>
+
+                    <div class="report-body">
+                        <div class="report-topic-heading">
+                            <h3 class="t-op">नाम</h3>
+                            <h3 class="t-op">आर्द्रता</h3>
+                            <h3 class="t-op">तापमान</h3>
+                            <h3 class="t-op">पानीको स्थिति</h3>
+                            <h3 class="t-op">समय</h3>
                         </div>
-                        {% endfor %}
+                        {% for data in latest_entry %}
+                        <div class="items">
+                            <div class="item1">
+                                <h3 class="t-op-nextlvl">{{data.field5}}</h3>
+                                <h3 class="t-op-nextlvl">{{data.field1|floatformat:0}}g/m³</h3>
+                                <h3 class="t-op-nextlvl">{{data.field2}}°</h3>
+                                <h3 class="t-op-nextlvl label-tag">{{data.field4}}</h3>
+                                <h3 class="t-op-nextlvl">{{data.created_at}}</h3>
+                            </div>
+                            {% endfor %}
 
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="{% static 'js/index.js' %}"></script>
+        <script src="{% static 'js/index.js' %}"></script>
 </body>
 
 </html>

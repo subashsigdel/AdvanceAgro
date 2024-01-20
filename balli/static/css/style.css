@@ -317,10 +317,10 @@ padding: 20px;
 width: 1120px; 
 display: flex; 
 justify-content: space-between; 
-align-items: center; 
+
 } 
 .t-op { 
-font-size: 18px; 
+font-size: 14px; 
 letter-spacing: 0px; 
 } 
 
@@ -331,10 +331,10 @@ margin-top: 15px;
 
 .item1 { 
 margin-top: 20px; 
+width:30px
 } 
 .t-op-nextlvl { 
-font-size: 14px; 
-letter-spacing: 0px; 
+font-size: 14px; ; 
 font-weight: 600; 
 } 
 

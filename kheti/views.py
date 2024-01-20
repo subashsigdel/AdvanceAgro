@@ -18,7 +18,7 @@ def receive_post(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body.decode('utf-8'))
-            print(f"Received POST request on {request.path}: {data}")
+        
 
             # Start a new thread to process the data concurrently
             process_data(data)
@@ -27,7 +27,6 @@ def receive_post(request):
             response_data = {'status': 'connected'}
             return JsonResponse(response_data, status=200)
         except json.JSONDecodeError as e:
-            print(f"Failed to decode JSON: {e}")
             response_data = {'error': 'Invalid JSON'}
             return JsonResponse(response_data, status=400)
     else:

@@ -62,17 +62,22 @@
 						<h3><a href="{% url 'report' %}">रिपोर्ट</a> </h3>
 					</div>
 
-					<div class="nav-option option3">
-						<img src="{% static 'images/report.png' %}" class="nav-img" alt="report">
-						<h3><a href="{% url 'timeline' %}">समय तालिका</a> </h3>
-					</div>
+                    <div class="nav-option option3">
+                        <img src="{% static 'images/timetable.png' %}" class="nav-img" alt="report">
+                        <h3><a href="{% url 'timeline' %}">समय तालिका</a> </h3>
+                    </div>
 
-					<div class="nav-option option5">
-						<img src="{% static 'images/profile.png' %}" class="nav-img" alt="blog">
-						<a href="{% url 'userinput' %}">
-							<h3>तापमान सेट गर्नुहोस्</h3>
-						</a>
-					</div>
+					<div class=" nav-option option5">
+                                <img src="{% static 'images/update.png' %}" class="nav-img" alt="blog">
+                                <a href="{% url 'userinput' %}">
+                                    <h3>तापमान सेट गर्नुहोस्</h3> 
+                                </a>
+                    </div>
+					<div class="nav-option option5"> 
+						<img src="{% static 'images/money.png' %}"
+							class="nav-img"
+							alt="blog"> 
+						<a href="{% url 'notice' %}"><h3>मूल्य हेर्नुहोस्</h3></a> </div>
 
 
 					<div class="nav-option logout">

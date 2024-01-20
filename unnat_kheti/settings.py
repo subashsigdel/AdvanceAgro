@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'kheti',
     'balli',
     'sslserver',
+    'django_nepali',
 ]
 
 MIDDLEWARE = [

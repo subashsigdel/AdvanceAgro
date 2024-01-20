@@ -14,6 +14,9 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from datetime import datetime
 import json
+import requests
+from bs4 import BeautifulSoup
+import json
 
 # Create your views here.
 
@@ -84,7 +87,6 @@ def dashboard(request):
         # Extract the last entry from the feed
         if 'feeds' in data and data['feeds']:
             last_entry = data['feeds'][-10:]
-            print(last_entry)
             
             context = {'latest_entry': last_entry,
                        'humidity': humidity,
@@ -111,7 +113,6 @@ def report(request):
     current_time = timezone.now()
 
     for crop in all_crops:
-        print(crop)
         created_date = crop.created_date
         harvesting_time = crop.harvesting_time
 
@@ -130,7 +131,6 @@ def report(request):
             'field_name': crop.field_name,
             'status': status,
         }
-        print(crop_info)
 
         crops_info.append(crop_info)
 
@@ -179,7 +179,6 @@ def timeline(request):
 
     # Get the current month in digit
     current_month_digit = int(datetime.now().month) + 3
-    print(current_month_digit)
 
     # Calculate month digits for each crop
     crops_info = []
@@ -206,3 +205,41 @@ def timeline(request):
         'current_month_digit': current_month_digit,
     }
     return render(request, 'timeline.html', context)
+
+
+
+def notice(request):
+    URL = "https://kalimatimarket.gov.np/"
+    r = requests.get(URL)
+
+    soup = BeautifulSoup(r.content, 'lxml')
+
+    # Check if the 'commodityDailyPrice' div exists on the page
+    table = soup.find('table', attrs={'id': 'commodityDailyPrice'})
+    if table:
+        rows = table.find_all('tr')
+        
+        vegetables_data = []
+
+        # Iterate through rows and extract data
+        for row in rows:
+            columns = row.find_all('td')
+            
+            if columns:  # Check if the row has columns
+              
+                vegetable_name = columns[0].text.strip()
+                min_price = columns[1].text.strip()
+                max_price = columns[2].text.strip()
+                avg_price = columns[3].text.strip()
+
+                # Add the data to the vegetables_data list
+                vegetables_data.append({
+                    'name': vegetable_name,
+                    'min_price': min_price,
+                    'max_price': max_price,
+                    'avg_price': avg_price,
+                })
+
+        return render(request, 'notice.html', {'vegetables_data': vegetables_data})
+    else:
+        return render(request, 'notice.html', {'error_message': "Table with id 'commodityDailyPrice' not found on the page."})

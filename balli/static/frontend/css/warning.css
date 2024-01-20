@@ -1,0 +1,33 @@
+/* The alert message box */
+.alert {
+    padding: 10px;
+    background-color: #eb2113c9; /* Red */
+    margin-top: 15px;
+}
+
+/* The close button */
+.closebtn {
+    /* margin-left: 15px; */
+    /* color: white; */
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.warninghead{
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    margin-left:0px;
+}
+
+.wimg{
+    width:20px;
+    height:20px;
+    padding-right: 5px;
+}
