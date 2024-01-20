@@ -104,3 +104,38 @@ def user_logout(request):
     logout(request)
     return redirect(reverse('login'))
 
+
+def report(request):
+    return render(request, 'report.html')
+
+
+def user_input(request):
+    crop_types = CropTimeline.CROP_TYPES
+    if request.method == 'POST':
+        crop_type = request.POST.get('crop_type')
+        ideal_starting_temperature = request.POST.get('ideal_starting_temperature')
+        ideal_starting_moisture = request.POST.get('ideal_starting_moisture')
+
+        # Validate input as needed
+
+        # Create a new crop instance
+        crop_instance = CropTimeline.objects.create(
+            crop_type=crop_type,
+            ideal_starting_temperature=ideal_starting_temperature,
+            ideal_starting_moisture=ideal_starting_moisture,
+            initial_moisture=ideal_starting_moisture,  # Assuming you want to set initial values
+            initial_temperature=ideal_starting_temperature,  # Assuming you want to set initial values
+            pesticide_time=timezone.now() + timedelta(days=get_random_days()),
+            migration_time=timezone.now() + timedelta(days=get_random_days()),
+            harvesting_time=timezone.now() + timedelta(days=get_random_days())
+        )
+
+        # Redirect to a success page or display a confirmation message
+        return render(request, 'report.html', {'message': 'Crop created successfully'})
+
+    return render(request, 'userinput.html', {'crop_types': crop_types})
+
+def get_random_days():
+    # You can adjust the range and logic for generating random days as needed
+    import random
+    return random.randint(10, 30)

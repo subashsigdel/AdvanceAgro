@@ -74,7 +74,7 @@
 						<img src="{% static 'images/report.png' %}"
 							class="nav-img"
 							alt="report"> 
-						<h3> रिपोर्ट</h3> 
+						<h3><a href="{% url 'report' %}">रिपोर्ट</a> </h3> 
 					</div> 
 
 					<div class="nav-option option5"> 
@@ -89,7 +89,7 @@
 						<img src="{% static 'images/profile.png' %}"
 							class="nav-img"
 							alt="blog"> 
-						<a href="/frontend/userinput.html"><h3>तापमान सेट गर्नुहोस्</h3></a> 
+						<a href="{% url 'userinput' %}"><h3>तापमान सेट गर्नुहोस्</h3></a> 
 					</div> 
 
 
