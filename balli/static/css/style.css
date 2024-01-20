@@ -19,16 +19,16 @@ font-family: "Poppins", sans-serif;
 --Border-color: rgb(67, 173, 94);; 
 --one-use-color:  rgb(67, 173, 94);; 
 --two-use-color: rgb(67, 173, 94);; 
-}
-a{
-    text-decoration: none;
-    color: black;
-}
+} 
 body { 
 background-color: var(--background-color4); 
 max-width: 100%; 
 overflow-x: hidden; 
 } 
+a{
+    text-decoration: none;
+    color: black;
+}
 
 header { 
 height: 70px; 
@@ -200,8 +200,8 @@ gap: 20px;
 transition: all 0.1s ease-in-out; 
 } 
 .nav-option:hover { 
-border-left: 5px solid #a2a2a2; 
-background-color: #dadada; 
+border-left: 5px solid #ff0000; 
+background-color: rgb(67, 173, 94); 
 cursor: pointer; 
 } 
 .nav-img { 
@@ -216,8 +216,8 @@ gap: 30px;
 } 
 
 .option1 { 
-border-left: 5px solid #010058af; 
-background-color: var(--Border-color); 
+/* border-left: 5px solid #010058af;  */
+/* background-color: var(--Border-color);  */
 color: white; 
 cursor: pointer; 
 } 

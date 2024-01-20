@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-vj(cltevbx-i$lzwuenpm83+th&n09$&kp^%p$@x1_z6@e-yp=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.20.0.1', 'good-mackerel-hugely.ngrok-free.app', '127.0.0.1']
-
+ALLOWED_HOSTS = ['172.20.0.1', 'good-mackerel-hugely.ngrok-free.app', '127.0.0.1', '192.168.43.53',]
+CSRF_TRUSTED_ORIGINS = ['https://good-mackerel-hugely.ngrok-free.app',]
 
 # Application definition
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'kheti',
     'balli',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -113,6 +114,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+SECURE_SSL_REDIRECT = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

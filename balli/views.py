@@ -12,7 +12,7 @@ from django.contrib.auth import update_session_auth_hash
 import requests
 from django.http import JsonResponse
 from django.shortcuts import render
-
+from datetime import datetime
 import json
 
 # Create your views here.
@@ -106,7 +106,39 @@ def user_logout(request):
 
 
 def report(request):
-    return render(request, 'report.html')
+    all_crops = CropTimeline.objects.all()
+    crops_info = []
+    current_time = timezone.now()
+
+    for crop in all_crops:
+        print(crop)
+        created_date = crop.created_date
+        harvesting_time = crop.harvesting_time
+
+        time_difference = harvesting_time - created_date
+        time_difference_days = time_difference.days
+
+        if time_difference_days > (current_time - created_date).days / 2:
+            status = "ready"
+        elif 1 <= time_difference_days < (current_time - created_date).days:
+            status = "in progress"
+        else:
+            status = "done"
+
+        crop_info = {
+            'crop_type': crop.crop_type,
+            'field_name': crop.field_name,
+            'status': status,
+        }
+        print(crop_info)
+
+        crops_info.append(crop_info)
+
+    context = {
+        'crops_info': crops_info,
+    }
+
+    return render(request, 'report.html', context)
 
 
 def user_input(request):
@@ -139,3 +171,38 @@ def get_random_days():
     # You can adjust the range and logic for generating random days as needed
     import random
     return random.randint(10, 30)
+
+
+def timeline(request):
+    # Retrieve all instances of the Crop model
+    all_crops = CropTimeline.objects.all()
+
+    # Get the current month in digit
+    current_month_digit = int(datetime.now().month) + 3
+    print(current_month_digit)
+
+    # Calculate month digits for each crop
+    crops_info = []
+    for crop in all_crops:
+        created_month_digit = int(crop.created_date.month) + 3
+        harvesting_month_digit = int(crop.harvesting_time.month) + 3
+        field_name = crop.field_name
+
+        if created_month_digit > 13:
+            created_month_digit = created_month_digit - 12
+        if harvesting_month_digit > 13:
+            harvesting_month_digit - 12
+        crop_info = {
+            'crop_type': crop.crop_type,  # Include any other information you need
+            'created_month_digit': created_month_digit,
+            'harvesting_month_digit': harvesting_month_digit,
+            'field_name': field_name,
+        }
+
+        crops_info.append(crop_info)
+
+    context = {
+        'crops_info': crops_info,
+        'current_month_digit': current_month_digit,
+    }
+    return render(request, 'timeline.html', context)

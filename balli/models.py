@@ -3,15 +3,18 @@ from datetime import timedelta
 
 class CropTimeline(models.Model):
     CROP_TYPES = [
-        ('onion', 'प्याज'),
-        ('tomato', 'टमाटर'),
-        ('rice', 'धान'),
+        ('प्याज', 'प्याज'),
+        ('टमाटर', 'टमाटर'),
+        ('धान', 'धान'),
+        ('तोरी', 'तोरी'),
+        ('फुल ', 'फुल '),
         
     ]
 
     crop_type = models.CharField(max_length=100, choices=CROP_TYPES, unique=True)
     ideal_starting_temperature = models.FloatField(null=True, blank=True)
     ideal_starting_moisture = models.FloatField(null=True, blank=True)
+    field_name = models.CharField(max_length=255, null=True, blank=True)
     pesticide_time = models.DateTimeField()
     migration_time = models.DateTimeField(null=True, blank=True)
     harvesting_time = models.DateTimeField()
